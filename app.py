@@ -78,12 +78,21 @@ data = [
     ["SDN60", "MKON155KIT", "desde: 04-20-MA06260"],
 ]
 
-def extraer_ano_semana(serie):
-    match = re.search(r"(\d{2})-(\d{2})-MA(\d+)", serie)
-    if match:
-        semana, ano, num = match.groups()
-        return int(ano), int(semana), int(num)
-    return None, None, None
+def obtener_kit(modelo, numero_serie):
+    modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
+    for _, row in df_filtered.iterrows():
+        if modelo_normalizado == row["Modelo"]:
+            kit = row["Kit"]
+            rango_serie = row["N_Serie"]
+            if not rango_serie:
+                return f"El kit correspondiente es: {kit}"
+            match_hasta = re.search(r"hasta:\s*([P\d]+)", rango_serie)
+            match_desde = re.search(r"desde:\s*([P\d]+)", rango_serie)
+            if match_hasta and numero_serie <= match_hasta.group(1):
+                return f"El kit correspondiente es: {kit}"
+            if match_desde and numero_serie >= match_desde.group(1):
+                return f"El kit correspondiente es: {kit}"
+    return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
 
 df_filtered = pd.DataFrame(data, columns=["Modelo", "Kit", "N_Serie"])
 
