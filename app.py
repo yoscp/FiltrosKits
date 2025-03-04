@@ -67,34 +67,29 @@ data = [
     ["SDN10", "MKON65KIT", "desde: P104774157"],
     ["SDN20", "MKON65KIT", "desde: P104774157"],
     ["SDN30", "MKON65KIT", "desde: P104774157"],
+    ["SDN180", "MKOHC5850KIT", "desde: P00000000"],
+    ["SDN190", "MKOHC5850KIT", "desde: P00000000"],
+    ["SDN200", "MKOHC5850KIT", "desde: P00000000"],
+    ["SDN210", "MKOHC5850KIT", "desde: P00000000"],
     ["SDN180", "2 x MKO2700KIT", "hasta: 02-20-MA05588"],
     ["SDN180", "MKOHC5850KIT", "desde: 02-20-MA05589"],
+    ["SDN40", "MKON155KIT", "desde: 04-20-MA06260"],
+    ["SDN50", "MKON155KIT", "desde: 04-20-MA06260"],
+    ["SDN60", "MKON155KIT", "desde: 04-20-MA06260"],
 ]
+
+def extraer_ano_semana(serie):
+    match = re.search(r"(\d{2})-(\d{2})-MA(\d+)", serie)
+    if match:
+        semana, ano, num = match.groups()
+        return int(ano), int(semana), int(num)
+    return None, None, None
 
 df_filtered = pd.DataFrame(data, columns=["Modelo", "Kit", "N_Serie"])
 
 st.title("🔍 Buscador de Kits por Número de Serie")
 modelo = st.text_input("Ingrese el modelo del secador:")
 numero_serie = st.text_input("Ingrese el número de serie:")
-
-def obtener_kit(modelo, numero_serie):
-    modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
-    numero_serie_num = int(re.sub(r"\D", "", numero_serie))
-    for _, row in df_filtered.iterrows():
-        if modelo_normalizado == row["Modelo"]:
-            kit = row["Kit"]
-            rango_serie = row["N_Serie"]
-            match_hasta = re.search(r"hasta:\s*([P\d]+)", rango_serie)
-            match_desde = re.search(r"desde:\s*([P\d]+)", rango_serie)
-            if match_hasta:
-                serie_max = int(re.sub(r"\D", "", match_hasta.group(1)))
-                if numero_serie_num <= serie_max:
-                    return f"El kit correspondiente es: {kit}"
-            if match_desde:
-                serie_min = int(re.sub(r"\D", "", match_desde.group(1)))
-                if numero_serie_num >= serie_min:
-                    return f"El kit correspondiente es: {kit}"
-    return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
 
 if st.button("Buscar Kit"):
     if modelo and numero_serie:
