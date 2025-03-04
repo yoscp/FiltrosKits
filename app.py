@@ -5,22 +5,6 @@ import subprocess
 import time
 import webbrowser
 
-def login():
-    st.title("🔒 Ingreso a Buscador de Kits")
-    usuario = st.text_input("Usuario")
-    contraseña = st.text_input("Contraseña", type="password")
-
-    if st.button("Ingresar"):
-        if (usuario == "admin" and contraseña == "Serfriair25") or (usuario == "Partner" and contraseña == "Serfriair25"): 
-            st.session_state["autenticado"] = True
-            st.session_state["recargar"] = True
-        else:
-            st.error("Usuario o contraseña incorrectos")
-
-if "autenticado" not in st.session_state or not st.session_state["autenticado"]:
-    login()
-    st.stop()
-
 # Diccionario de equivalencias entre nombres de modelos
 equivalencias_modelo = {
     "MKE23": "SDN10", "SDN10": "SDN10",
@@ -54,11 +38,11 @@ data = [
     ["SDN10", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN10", "MKON65KIT", "desde: P104774157"],
     ["SDN20", "MKO50KIT", "hasta: 14-18-MA09504"],
-    ["SDN20", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
-    ["SDN20", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
+    ["SDN20", "MKO45KIT", "desde: 14-18-MA09505 desde: P000000000 hasta: P104774156 "],
+    ["SDN20", "MKON55KIT", "desde: P100070792  hasta: P104774156"],
     ["SDN20", "MKON65KIT", "desde: P104774157"],
     ["SDN30", "MKO50KIT", "hasta: 14-18-MA09504"],
-    ["SDN30", "MKON55KIT", "desde: P100070792"],
+    ["SDN30", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
     ["SDN30", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN30", "MKON65KIT", "desde: P104774157"],
     ["SDN35", "MKON65KIT", "desde: P104774157"],
@@ -75,6 +59,23 @@ data = [
     ["SDN190", "MKOHC5850KIT", "desde: 02-20-MA05589 desde P000000000"],
     ["SDN190", "2 x MKO2700KIT", "hasta: 02-20-MA05588"]
 ]
+
+def login():
+    st.title("\U0001F512 Ingreso a Buscador de Kits")
+    usuario = st.text_input("Usuario")
+    contrasena = st.text_input("Contraseña", type="password")
+
+    if st.button("Ingresar"):
+        if usuario in ["admin", "Partner"] and contrasena == "Serfriair25":
+            st.session_state["autenticado"] = True
+            st.experimental_rerun()
+        else:
+            st.error("Usuario o contraseña incorrectos")
+
+if "autenticado" not in st.session_state or not st.session_state["autenticado"]:
+    login()
+    st.stop()
+
 def obtener_kit(modelo, numero_serie):
     modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
     for row in data:
