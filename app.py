@@ -58,7 +58,7 @@ data = [
     ["SDN20", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN20", "MKON65KIT", "desde: P104774157"],
     ["SDN30", "MKO50KIT", "hasta: 14-18-MA09504"],
-    ["SDN30", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
+    ["SDN30", "MKON55KIT", "desde: P100070792"],
     ["SDN30", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN30", "MKON65KIT", "desde: P104774157"],
     ["SDN35", "MKON65KIT", "desde: P104774157"],
