@@ -1,26 +1,9 @@
 import streamlit as st
-import pandas as pd
 import re
 import os
 import subprocess
 import time
 import webbrowser
-
-def login():
-    st.title("🔒 Ingreso a Buscador de Kits")
-    usuario = st.text_input("Usuario")
-    contraseña = st.text_input("Contraseña", type="password")
-
-    if st.button("Ingresar"):
-        if (usuario == "admin" and contraseña == "Serfriair25") or (usuario == "Partner" and contraseña == "Serfriair25"): 
-            st.session_state["autenticado"] = True
-            st.session_state["recargar"] = True
-        else:
-            st.error("Usuario o contraseña incorrectos")
-
-if "autenticado" not in st.session_state or not st.session_state["autenticado"]:
-    login()
-    st.stop()
 
 # Diccionario de equivalencias entre nombres de modelos
 equivalencias_modelo = {
@@ -48,55 +31,67 @@ equivalencias_modelo = {
     "MKE5850": "SDN210", "SDN210": "SDN210"
 }
 
-# Base de datos interna en el código
+# Base de datos integrada en el código
 data = [
     ["SDN10", "MKO50KIT", "hasta: 14-18-MA09504"],
-    ["SDN10", "MKO45KIT", "desde: 14-18-MA09505"],
-    ["SDN20", "MKO50KIT", ""],
+    ["SDN10", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
+    ["SDN10", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
+    ["SDN10", "MKON65KIT", "desde: P104774157"],
+    ["SDN20", "MKO50KIT", "hasta: 14-18-MA09504"],
     ["SDN20", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
     ["SDN20", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN20", "MKON65KIT", "desde: P104774157"],
-    ["SDN30", "MKO50KIT", "desde: P10000000 hasta: P1134515181"],
-    ["SDN50", "MKO155KIT", "desde: 01-22-MA05400 hasta: 01-22-MA05450"],
-    ["SDN40", "MKON155KIT", "desde: 04-20-MA06260"],
-    ["SDN50", "MKON155KIT", "desde: 04-20-MA06260"],
-    ["SDN60", "MKON155KIT", "desde: 04-20-MA06260"],
-    ["SDN40", "MKON155KIT", "desde: P00000000"],
-    ["SDN50", "MKON155KIT", "desde: P00000000"],
-    ["SDN60", "MKON155KIT", "desde: P00000000"],
-    ["SDN10", "MKON65KIT", "desde: P104774157"],
-    ["SDN20", "MKON65KIT", "desde: P104774157"],
+    ["SDN30", "MKO50KIT", "hasta: 14-18-MA09504"],
+    ["SDN30", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
+    ["SDN30", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN30", "MKON65KIT", "desde: P104774157"],
-    ["SDN180", "MKOHC5850KIT", "desde: P00000000"],
-    ["SDN190", "MKOHC5850KIT", "desde: P00000000"],
-    ["SDN200", "MKOHC5850KIT", "desde: P00000000"],
-    ["SDN210", "MKOHC5850KIT", "desde: P00000000"],
+    ["SDN35", "MKON65KIT", "desde: P104774157"],
+    ["SDN35", "MKON75KIT", "desde: P100070792 hasta: P104774156"],
+    ["SDN35", "MKO70KIT", "hasta: P100070791"],
+    ["SDN40", "MKON155KIT", "desde: 04-20-MA06260 y desde P000000000"],
+    ["SDN40", "MKO150KIT", "hasta: 04-20-MA06259"],
+    ["SDN50", "MKON155KIT", "desde: 04-20-MA06260 y desde P000000000"],
+    ["SDN50", "MKO150KIT", "hasta: 04-20-MA06259"],
+    ["SDN60", "MKON155KIT", "desde: 04-20-MA06260 y desde P000000000"],
+    ["SDN60", "MKO150KIT", "hasta: 04-20-MA06259"],
+    ["SDN180", "MKOHC5850KIT", "desde: 02-20-MA05589 desde P000000000"],
     ["SDN180", "2 x MKO2700KIT", "hasta: 02-20-MA05588"],
-    ["SDN180", "MKOHC5850KIT", "desde: 02-20-MA05589"],
-    ["SDN40", "MKON155KIT", "desde: 04-20-MA06260"],
-    ["SDN50", "MKON155KIT", "desde: 04-20-MA06260"],
-    ["SDN60", "MKON155KIT", "desde: 04-20-MA06260"],
+    ["SDN190", "MKOHC5850KIT", "desde: 02-20-MA05589 desde P000000000"],
+    ["SDN190", "2 x MKO2700KIT", "hasta: 02-20-MA05588"]
 ]
+
+def login():
+    st.title("\U0001F512 Ingreso a Buscador de Kits")
+    usuario = st.text_input("Usuario")
+    contrasena = st.text_input("Contraseña", type="password")
+
+    if st.button("Ingresar"):
+        if usuario in ["admin", "Partner"] and contrasena == "Serfriair25":
+            st.session_state["autenticado"] = True
+            st.experimental_rerun()
+        else:
+            st.error("Usuario o contraseña incorrectos")
+
+if "autenticado" not in st.session_state or not st.session_state["autenticado"]:
+    login()
+    st.stop()
 
 def obtener_kit(modelo, numero_serie):
     modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
-    for _, row in df_filtered.iterrows():
-        if modelo_normalizado == row["Modelo"]:
-            kit = row["Kit"]
-            rango_serie = row["N_Serie"]
+    for row in data:
+        if modelo_normalizado == row[0]:
+            kit, rango_serie = row[1], row[2]
             if not rango_serie:
                 return f"El kit correspondiente es: {kit}"
-            match_hasta = re.search(r"hasta:\s*([P\d]+)", rango_serie)
-            match_desde = re.search(r"desde:\s*([P\d]+)", rango_serie)
+            match_hasta = re.search(r"hasta:\s*([P\d-]+)", rango_serie)
+            match_desde = re.search(r"desde:\s*([P\d-]+)", rango_serie)
             if match_hasta and numero_serie <= match_hasta.group(1):
                 return f"El kit correspondiente es: {kit}"
             if match_desde and numero_serie >= match_desde.group(1):
                 return f"El kit correspondiente es: {kit}"
     return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
 
-df_filtered = pd.DataFrame(data, columns=["Modelo", "Kit", "N_Serie"])
-
-st.title("🔍 Buscador de Kits por Número de Serie")
+st.title("\U0001F50D Buscador de Kits por Número de Serie")
 modelo = st.text_input("Ingrese el modelo del secador:")
 numero_serie = st.text_input("Ingrese el número de serie:")
 
