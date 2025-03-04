@@ -55,8 +55,8 @@ data = [
     ["SDN10", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN10", "MKON65KIT", "desde: P104774157"],
     ["SDN20", "MKO50KIT", "hasta: 14-18-MA09504"],
-    ["SDN20", "MKO45KIT", "desde: 14-18-MA09505 desde: P000000000 hasta: P100070791 "],
-    ["SDN20", "MKON55KIT", "desde: P100070792  hasta: P104774156"],
+    ["SDN20", "MKO45KIT", "desde: 14-18-MA09505 desde: P000000000 hasta: P104774156"],
+    ["SDN20", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN20", "MKON65KIT", "desde: P104774157"],
     ["SDN30", "MKO50KIT", "hasta: 14-18-MA09504"],
     ["SDN30", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
@@ -71,10 +71,7 @@ data = [
     ["SDN50", "MKO150KIT", "hasta: 04-20-MA06259"],
     ["SDN60", "MKON155KIT", "desde: 04-20-MA06260 y desde P000000000"],
     ["SDN60", "MKO150KIT", "hasta: 04-20-MA06259"],
-    ["SDN180", "MKOHC5850KIT", "desde: 02-20-MA05589 desde P000000000"],
-    ["SDN180", "2 x MKO2700KIT", "hasta: 02-20-MA05588"],
-    ["SDN190", "MKOHC5850KIT", "desde: 02-20-MA05589 desde P000000000"],
-    ["SDN190", "2 x MKO2700KIT", "hasta: 02-20-MA05588"]
+    ["SDN30", "MKON65KIT", "desde: P104774157"]
 ]
 
 def obtener_kit(modelo, numero_serie):
