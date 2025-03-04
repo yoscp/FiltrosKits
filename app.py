@@ -14,7 +14,7 @@ def login():
     if st.button("Ingresar"):
         if (usuario == "admin" and contraseña == "Serfriair25") or (usuario == "Partner" and contraseña == "Serfriair25"): 
             st.session_state["autenticado"] = True
-            st.experimental_rerun()
+            st.session_state["recargar"] = True
         else:
             st.error("Usuario o contraseña incorrectos")
 
