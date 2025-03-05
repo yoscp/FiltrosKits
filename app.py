@@ -78,6 +78,8 @@ def obtener_kit(modelo, numero_serie):
     modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
     if modelo_normalizado in ["SDN30", "MKE53"] and numero_serie > "P104774156":
         return "El kit correspondiente es: MKON65KIT"
+    if modelo_normalizado in ["SDN10", "MKE23"] and numero_serie < "14-18-MA09504":
+        return "El kit correspondiente es: MKO50KIT"
     for row in data:
         if modelo_normalizado == row[0]:
             kit, rango_serie = row[1], row[2]
