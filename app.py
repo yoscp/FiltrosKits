@@ -127,7 +127,7 @@ def validar_datos(modelo, numero_serie):
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
     if valor_serie == "INVALIDO":
         return "Número de serie incorrecto"
-    return None
+    
     
     # 📌 Regla General para números de serie en formato SS-AA-VALOR
     if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and anio_serie is not None:
