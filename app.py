@@ -117,8 +117,6 @@ data = [
     ["SDN170", "MKO2700KIT", "hasta: P101076063"]
 ]
 
-]
-
 def obtener_kit(modelo, numero_serie):
     modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
