@@ -22,6 +22,14 @@ if "autenticado" not in st.session_state or not st.session_state["autenticado"]:
     login()
     st.stop()
 
+def extraer_valores_serie(serie):
+    """Extrae los valores de la serie en formato SS-AA-VALOR o PXXXXXX."""
+    match = re.match(r"(\d+)-(\d+)-([A-Z\d]+)", serie)
+    if match:
+        semana, anio, valor = match.groups()
+        return int(anio), int(semana), valor  # Devuelve el año, la semana y el número
+    return None, None, serie  # Si no es SS-AA-VALOR, devuelve la serie original
+
 # Diccionario de equivalencias entre nombres de modelos
 equivalencias_modelo = {
     "MKE23": "SDN10", "SDN10": "SDN10",
@@ -55,36 +63,38 @@ data = [
     ["SDN10", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN10", "MKON65KIT", "desde: P104774157"],
     ["SDN20", "MKO50KIT", "hasta: 14-18-MA09504"],
-    ["SDN20", "MKO45KIT", "desde: 14-18-MA09505 desde: P000000000 hasta: P104774156"],
+    ["SDN20", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
     ["SDN20", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN20", "MKON65KIT", "desde: P104774157"],
     ["SDN30", "MKO50KIT", "hasta: 14-18-MA09504"],
     ["SDN30", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
     ["SDN30", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN30", "MKON65KIT", "desde: P104774157"],
-    ["SDN35", "MKON65KIT", "desde: P104774157"],
-    ["SDN35", "MKON75KIT", "desde: P100070792 hasta: P104774156"],
-    ["SDN35", "MKO70KIT", "hasta: P100070791"],
-    ["SDN40", "MKON155KIT", "desde: 04-20-MA06260 y desde P000000000"],
-    ["SDN40", "MKO150KIT", "hasta: 04-20-MA06259"],
-    ["SDN50", "MKON155KIT", "desde: 04-20-MA06260 y desde P000000000"],
-    ["SDN50", "MKO150KIT", "hasta: 04-20-MA06259"],
-    ["SDN60", "MKON155KIT", "desde: 04-20-MA06260 y desde P000000000"],
-    ["SDN60", "MKO150KIT", "hasta: 04-20-MA06259"],
-    ["SDN30", "MKON65KIT", "desde: P104774157"]
 ]
 
 def obtener_kit(modelo, numero_serie):
     modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
-    if modelo_normalizado in ["SDN30", "MKE53"] and numero_serie > "P104774156":
-        return "El kit correspondiente es: MKON65KIT"
-    if modelo_normalizado in ["SDN10", "MKE23"] and numero_serie < "14-18-MA09505":
-        return "El kit correspondiente es: MKO50KIT"
-    if modelo_normalizado in ["SDN10", "MKE23"] and "P100070792" <= numero_serie <= "P104774156":
-        return "El kit correspondiente es: MKON55KIT"
-    if modelo_normalizado in ["SDN10", "MKE23"] and numero_serie >= "104774157":
-        return "El kit correspondiente es: MKON65KIT"
-        
+    anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
+
+    # 📌 Regla General para números de serie en formato SS-AA-VALOR
+    if anio_serie is not None:
+        if anio_serie < 18 or (anio_serie == 18 and semana_serie < 14):
+            return "El kit correspondiente es: MKO50KIT"
+        if modelo_normalizado in ["SDN10", "MKE23"] and anio_serie >= 18 and semana_serie >= 14:
+            return "El kit correspondiente es: MKO45KIT"
+        if modelo_normalizado in ["SDN40", "MKE100"] and anio_serie >= 20 and semana_serie >= 4:
+            return "El kit correspondiente es: MKON155KIT"
+
+    # 📌 Regla para modelos con formato PXXXXX
+    if valor_serie.startswith("P"):
+        if modelo_normalizado in ["SDN30", "MKE53"] and valor_serie >= "P104774157":
+            return "El kit correspondiente es: MKON65KIT"
+        if modelo_normalizado in ["SDN10", "MKE23"] and "P100070792" <= valor_serie <= "P104774156":
+            return "El kit correspondiente es: MKON55KIT"
+        if modelo_normalizado in ["SDN10", "MKE23"] and valor_serie >= "P104774157":
+            return "El kit correspondiente es: MKON65KIT"
+
+    # 📌 Recorre la base de datos integrada para buscar coincidencias
     for row in data:
         if modelo_normalizado == row[0]:
             kit, rango_serie = row[1], row[2]
@@ -96,6 +106,7 @@ def obtener_kit(modelo, numero_serie):
                 return f"El kit correspondiente es: {kit}"
             if match_desde and numero_serie >= match_desde.group(1):
                 return f"El kit correspondiente es: {kit}"
+
     return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
 
 st.title("\U0001F50D Buscador de Kits por Número de Serie")
