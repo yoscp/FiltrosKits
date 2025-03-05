@@ -7,7 +7,7 @@ import webbrowser
 
 
 def login():
-    st.title("🔒 Ingreso a Buscador de Kits")
+    st.title("🔒 Ingreso a Buscador de Kits Serfriair")
     usuario = st.text_input("Usuario")
     contraseña = st.text_input("Contraseña", type="password")
 
@@ -175,4 +175,4 @@ if st.button("Buscar Kit"):
         resultado = obtener_kit(modelo, numero_serie)
         st.success(resultado)
     else:
-        st.warning("Por favor, ingrese un modelo y un número de serie Serfriair.")
+        st.warning("Por favor, ingrese un modelo y un número de serie.")
