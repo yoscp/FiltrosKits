@@ -81,14 +81,41 @@ data = [
     ["SDN20", "MKON65KIT", "desde: P104774157"],
     ["SDN30", "MKON65KIT", "desde: P104774157"],
     ["SDN180", "MKOHC5850KIT", "desde: P00000000"],
-    ["SDN190", "MKOHC5850KIT", "desde: P00000000"],
-    ["SDN200", "MKOHC5850KIT", "desde: P00000000"],
-    ["SDN210", "MKOHC5850KIT", "desde: P00000000"],
-    ["SDN180", "2 x MKO2700KIT", "hasta: 02-20-MA05588"],
     ["SDN180", "MKOHC5850KIT", "desde: 02-20-MA05589"],
+    ["SDN180", "2 x MKO2700KIT", "hasta: 02-20-MA05588"],
+    ["SDN190", "MKOHC5850KIT", "desde: P00000000"],
+    ["SDN190", "MKOHC5850KIT", "desde: 02-20-MA05589"],
+    ["SDN190", "2 x MKO2700KIT", "hasta: 02-20-MA05588"],
+    ["SDN200", "MKOHC5850KIT", "desde: P00000000"],
+    ["SDN200", "2 x MKO2700KIT", "hasta: 02-20-MA05588"],
+    ["SDN200", "MKOHC5850KIT", "desde: 02-20-MA05589"],
+    ["SDN210", "MKOHC5850KIT", "desde: P00000000"],
+    ["SDN210", "2 x MKO2700KIT", "hasta: 02-20-MA05588"],
+    ["SDN210", "MKOHC5850KIT", "desde: 02-20-MA05589"],
     ["SDN40", "MKON155KIT", "desde: 04-20-MA06260"],
     ["SDN50", "MKON155KIT", "desde: 04-20-MA06260"],
     ["SDN60", "MKON155KIT", "desde: 04-20-MA06260"],
+    ["SDN80", "MKON405KIT", "desde: P100078377"],
+    ["SDN80", "MKO500KIT", "hasta: P100078376"],
+    ["SDN90", "MKON405KIT", "desde: P100078377"],
+    ["SDN90", "MKO500KIT", "hasta: P100078376"],
+    ["SDN100", "MKO851KIT", "hasta: P100077609"],
+    ["SDN100", "MKO805KIT", "desde: P100077610"],
+    ["SDN110", "MKON805KIT", "desde: P100077610"],
+    ["SDN110", "MKO1210KIT", "hasta: P100077609"],
+    ["SDN120", "MKON1205KIT", "desde: P100077610"],
+    ["SDN120", "MKO1210KIT", "hasta: P100077609"],
+    ["SDN130", "MKON1205KIT", "desde: P100077610"],
+    ["SDN130", "MKO1210KIT", "hasta: P100077609"],
+    ["SDN140", "MKONHC1805 KIT", "desde: P100079932"],
+    ["SDN140", "MKO1820KIT", "hasta: P100079931"],
+    ["SDN150", "MKONHC1805 KIT", "desde: P100079932"],
+    ["SDN150", "MKO1820KIT", "hasta: P100079931"],
+    ["SDN160", "MKONHC2775 KIT", "desde: P101076064"],
+    ["SDN160", "MKO2700KIT", "hasta: P101076063"],
+    ["SDN170", "MKONHC2775 KIT", "desde: P101076064"],
+    ["SDN170", "MKO2700KIT", "hasta: P101076063"]
+]
 
 ]
 
@@ -114,12 +141,13 @@ def obtener_kit(modelo, numero_serie):
             return "El kit correspondiente es: MKON65KIT"
   
 # 📌Lógica específica para MKE-100 (SDN40)
-   if modelo_normalizado in [SDN40", "MKE100", "SDN50", "MKE150", "SDN60", "MKE190"]and valor_serie >= "P000000000":
-            return "El kit correspondiente es: :MKON155KIT"
-       if anio_serie is not None and (anio_serie > 20 or (anio_serie == 20 and semana_serie >= 4)):
-        return "El kit correspondiente es: MKON155KIT"
-       if anio_serie is not None and (anio_serie < 20 or (anio_serie == 20 and semana_serie < 4)):
-        return "El kit correspondiente es: MKO150KIT"
+  if modelo_normalizado in ["SDN40", "MKE100", "SDN50", "MKE150", "SDN60", "MKE190"]:
+        if valor_serie >= "P000000000":
+            return "El kit correspondiente es: MKON155KIT"
+        if anio_serie is not None and (anio_serie > 20 or (anio_serie == 20 and semana_serie >= 4)):
+            return "El kit correspondiente es: MKON155KIT"
+        if anio_serie is not None and (anio_serie < 20 or (anio_serie == 20 and semana_serie < 4)):
+            return "El kit correspondiente es: MKO150KIT"
     
     # 📌 Recorre la base de datos integrada para buscar coincidencias
     for row in data:
