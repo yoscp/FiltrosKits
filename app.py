@@ -90,7 +90,7 @@ def obtener_kit(modelo, numero_serie):
             return "El kit correspondiente es: MKON65KIT"
         if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and "P100070792" <= valor_serie <= "P104774156":
             return "El kit correspondiente es: MKON55KIT"
-        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor_serie >= "P104774157":
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53", "MKE70"] and valor_serie >= "P104774157":
             return "El kit correspondiente es: MKON65KIT"
 
     # 📌 Recorre la base de datos integrada para buscar coincidencias
