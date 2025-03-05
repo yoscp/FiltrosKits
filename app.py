@@ -121,7 +121,7 @@ def obtener_kit(modelo, numero_serie):
     modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
 
-    def validar_datos(modelo, numero_serie):
+def validar_datos(modelo, numero_serie):
     if modelo not in equivalencias_modelo:
         return "Número de modelo incorrecto"
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
