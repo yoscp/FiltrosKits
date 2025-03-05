@@ -121,15 +121,7 @@ def obtener_kit(modelo, numero_serie):
     modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
 
-def validar_datos(modelo, numero_serie):
-    if modelo not in equivalencias_modelo:
-        return "Número de modelo incorrecto"
-    anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
-    if valor_serie == "INVALIDO" or (anio_serie is None and not valor_serie.startswith("P")):
-        return "Número de serie incorrecto"
-    return None
-    
-    
+      
     # 📌 Regla General para números de serie en formato SS-AA-VALOR
     if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and anio_serie is not None:
         if (anio_serie > 18) or (anio_serie == 18 and semana_serie > 14) or \
