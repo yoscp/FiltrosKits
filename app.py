@@ -77,14 +77,8 @@ def obtener_kit(modelo, numero_serie):
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
 
     # 📌 Regla General para números de serie en formato SS-AA-VALOR
-    if anio_serie is not None:
-        if anio_serie < 18 or (anio_serie == 18 and semana_serie < 14):
-            return "El kit correspondiente es: MKO50KIT"
-        if modelo_normalizado in ["SDN10", "MKE23"] and anio_serie >= 18 and semana_serie >= 14:
-            return "El kit correspondiente es: MKO45KIT"
-        if modelo_normalizado in ["SDN40", "MKE100"] and anio_serie >= 20 and semana_serie >= 4:
-            return "El kit correspondiente es: MKON155KIT"
-        if modelo_normalizado in ["SDN10", "MKE23"] and anio_serie is not None:
+    
+   if modelo_normalizado in ["SDN10", "MKE23"] and anio_serie is not None:
     if (anio_serie > 18 or 
        (anio_serie == 18 and semana_serie > 14) or 
        (anio_serie == 18 and semana_serie == 14 and valor_serie >= "MA09505")):
