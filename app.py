@@ -77,7 +77,7 @@ def obtener_kit(modelo, numero_serie):
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
 
     # 📌 Regla General para números de serie en formato SS-AA-VALOR
-    if modelo_normalizado in ["SDN10", "MKE23"] and anio_serie is not None:
+    if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and anio_serie is not None:
         if (anio_serie > 18) or (anio_serie == 18 and semana_serie > 14) or \
            (anio_serie == 18 and semana_serie == 14 and valor_serie >= "MA09505"):
             return "El kit correspondiente es: MKO45KIT"
@@ -86,11 +86,11 @@ def obtener_kit(modelo, numero_serie):
 
     # 📌 Regla para modelos con formato PXXXXX
     if valor_serie.startswith("P"):
-        if modelo_normalizado in ["SDN30", "MKE53"] and valor_serie >= "P104774157":
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor_serie >= "P104774157":
             return "El kit correspondiente es: MKON65KIT"
-        if modelo_normalizado in ["SDN10", "MKE23"] and "P100070792" <= valor_serie <= "P104774156":
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and "P100070792" <= valor_serie <= "P104774156":
             return "El kit correspondiente es: MKON55KIT"
-        if modelo_normalizado in ["SDN10", "MKE23"] and valor_serie >= "P104774157":
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor_serie >= "P104774157":
             return "El kit correspondiente es: MKON65KIT"
 
     # 📌 Recorre la base de datos integrada para buscar coincidencias
