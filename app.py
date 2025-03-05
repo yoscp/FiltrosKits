@@ -90,7 +90,7 @@ def obtener_kit(modelo, numero_serie):
        (anio_serie == 18 and semana_serie == 14 and valor_serie >= "MA09505")):
         return "El kit correspondiente es: MKO45KIT"
     else:
-        return "El kit correspondiente es: MKO50KIT
+        return "El kit correspondiente es: MKO50KIT"
 
     # 📌 Regla para modelos con formato PXXXXX
     if valor_serie.startswith("P"):
