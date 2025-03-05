@@ -1,4 +1,4 @@
-friaimport streamlit as st
+import streamlit as st
 import re
 import os
 import subprocess
