@@ -125,8 +125,9 @@ def validar_datos(modelo, numero_serie):
     if modelo not in equivalencias_modelo:
         return "Número de modelo incorrecto"
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
-    if valor_serie == "INVALIDO":
+    if valor_serie == "INVALIDO" or (anio_serie is None and not valor_serie.startswith("P")):
         return "Número de serie incorrecto"
+    return None
     
     
     # 📌 Regla General para números de serie en formato SS-AA-VALOR
