@@ -1,4 +1,4 @@
-import streamlit as st
+friaimport streamlit as st
 import re
 import os
 import subprocess
@@ -175,4 +175,4 @@ if st.button("Buscar Kit"):
         resultado = obtener_kit(modelo, numero_serie)
         st.success(resultado)
     else:
-        st.warning("Por favor, ingrese un modelo y un número de serie.")
+        st.warning("Por favor, ingrese un modelo y un número de serie Serfriair.")
