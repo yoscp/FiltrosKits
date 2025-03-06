@@ -195,9 +195,15 @@ def obtener_kit(modelo, numero_serie):
                 return f"El kit correspondiente es: {kit}"
             if match_desde and numero_serie >= match_desde.group(1):
                 return f"El kit correspondiente es: {kit}"
+             
 
     return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
+    
+# 📌 Verificación de formato de número de serie
 
+    if not re.match(r"(\d{2})-(\d{2})-MA\d{5}", numero_serie) and not re.match(r"P\d{9}", numero_serie):
+        return "Número de serie incorrecto"
+               
 st.title("\U0001F50D Buscador de Kits por Número de Serie")
 modelo = st.text_input("Ingrese el modelo del secador:")
 numero_serie = st.text_input("Ingrese el número de serie:")
