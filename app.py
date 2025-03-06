@@ -122,7 +122,10 @@ def validar_datos(modelo, numero_serie):
     if modelo not in equivalencias_modelo:
         return "Número de modelo incorrecto"
     
-    if not re.match(r"\d{2}-\d{2}-MA\d{5}", numero_serie) and not re.match(r"P\d{9}", numero_serie):
+    formato_ssaa = re.fullmatch(r"\d{2}-\d{2}-MA\d{5}$", numero_serie)  # Exactamente SS-AA-MA##### (5 dígitos después de MA)
+    formato_pnnnnnnnnn = re.fullmatch(r"P\d{9}$", numero_serie)  # Exactamente P seguido de 9 dígitos
+    
+    if not formato_ssaa and not formato_pnnnnnnnnn:
         return "Número de serie incorrecto"
     return None
     
