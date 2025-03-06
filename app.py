@@ -117,7 +117,22 @@ data = [
     ["SDN170", "MKO2700KIT", "hasta: P101076063"]
 ]
 
+def validar_datos(modelo, numero_serie):
+    """Verifica si el modelo y el número de serie son correctos."""
+    if modelo not in equivalencias_modelo:
+        return "Número de modelo incorrecto"
+    
+    if not re.match(r"\d{2}-\d{2}-MA\d{5}", numero_serie) and not re.match(r"P\d{9}", numero_serie):
+        return "Número de serie incorrecto"
+    return None
+    
 def obtener_kit(modelo, numero_serie):
+
+    # 📌 Validación del modelo y número de serie
+    error_validacion = validar_datos(modelo, numero_serie)
+    if error_validacion:
+        return error_validacion
+        
     modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
 
@@ -199,10 +214,6 @@ def obtener_kit(modelo, numero_serie):
 
     return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
     
-# 📌 Verificación de formato de número de serie
-
-    if not re.match(r"(\d{2})-(\d{2})-MA\d{5}", numero_serie) and not re.match(r"P\d{9}", numero_serie):
-        return "Número de serie incorrecto"
                
 st.title("\U0001F50D Buscador de Kits por Número de Serie")
 modelo = st.text_input("Ingrese el modelo del secador:")
