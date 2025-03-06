@@ -169,6 +169,19 @@ def obtener_kit(modelo, numero_serie):
             return "El kit correspondiente es: MKON155KIT"
         else:
             return "El kit correspondiente es: MKO150KIT"
+            
+    # 📌Lógica específica para MKE-100 (SDN180)
+    if modelo_normalizado in ["SDN180", "MKE3300", "SDN190", "MKE3915", "SDN200", "MKE5085" ,"SDN210", "MKE5850"]:
+        if valor_serie >= "P000000000":
+            return "El kit correspondiente es: MKOHC5850KIT"
+     
+    if modelo_normalizado in ["SDN180", "MKE3300", "SDN190", "MKE3915", "SDN200", "MKE5085" ,"SDN210", "MKE5850"] and anio_serie is not None:
+        if (anio_serie > 20) or (anio_serie == 20 and semana_serie > 2) or \
+           (anio_serie == 20 and semana_serie == 2 and valor_serie >= "MA05589"):
+            return "El kit correspondiente es: MKOHC5850KIT"
+        else:
+            return "El kit correspondiente es: 2 x MKO2700KIT"
+    
     
     # 📌 Recorre la base de datos integrada para buscar coincidencias
     for row in data:
