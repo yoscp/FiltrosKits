@@ -142,7 +142,11 @@ def obtener_kit(modelo, numero_serie):
             return "El kit correspondiente es: MKON405KIT"
         if modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"] and valor_serie <= "P100078376":
             return "El kit correspondiente es: MKO500KIT"
-  
+        if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623", "SDN120", "MKE930, "SDN130", "MKE1200"] and valor_serie >= "P100077610":
+            return "El kit correspondiente es: MKON805KIT" 
+        if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623", "SDN120", "MKE930, "SDN130", "MKE1200"] and valor_serie <= "P100077609":
+            return "El kit correspondiente es: MKO851KIT"
+    
 # 📌Lógica específica para MKE-100 (SDN40)
     if modelo_normalizado in ["SDN40", "MKE100", "SDN50", "MKE150", "SDN60", "MKE190"]:
         if valor_serie >= "P000000000":
