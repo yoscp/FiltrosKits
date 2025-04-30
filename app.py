@@ -5,23 +5,6 @@ import subprocess
 import time
 import webbrowser
 
-
-def login():
-    st.title("🔒 Ingreso a Buscador de Kits Serfriair")
-    usuario = st.text_input("Usuario")
-    contraseña = st.text_input("Contraseña", type="password")
-
-    if st.button("Ingresar"):
-        if (usuario == "admin" and contraseña == "Serfriair25") or (usuario == "Partner" and contraseña == "Serfriair25"): 
-            st.session_state["autenticado"] = True
-            st.session_state["recargar"] = True
-        else:
-            st.error("Usuario o contraseña incorrectos")
-
-if "autenticado" not in st.session_state or not st.session_state["autenticado"]:
-    login()
-    st.stop()
-
 def extraer_valores_serie(serie):
     """Extrae los valores de la serie en formato SS-AA-VALOR o PXXXXXX."""
     match = re.match(r"(\d+)-(\d+)-([A-Z\d]+)", serie)
@@ -165,8 +148,15 @@ def obtener_kit(modelo, numero_serie):
             return "El kit correspondiente es: MKON405KIT"
         if modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"] and valor_serie <= "P100078376":
             return "El kit correspondiente es: MKO500KIT"
-        if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623", "SDN120", "MKE930", "SDN130", "MKE1200"] and valor_serie >= "P100077610":
+        if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623" ] and valor_serie >= "P100077610":
             return "El kit correspondiente es: MKON805KIT" 
+        if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623" ] and valor_serie <= "P100077609":
+            return "El kit correspondiente es: MKO851KIT"
+        if modelo_normalizado in [ "SDN120", "MKE930", "SDN130", "MKE1200"] and valor_serie >= "P100077610":
+            return "El kit correspondiente es: MKON1205KIT"
+        if modelo_normalizado in ["SDN120", "MKE930", "SDN130", "MKE1200"] and valor_serie <= "P100077609":
+            return "El kit correspondiente es: MK1O210KIT"
+            
         if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623", "SDN120", "MKE930", "SDN130", "MKE1200"] and valor_serie <= "P100077609":
             return "El kit correspondiente es: MKO851KIT"
 
