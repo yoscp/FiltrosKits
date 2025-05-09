@@ -213,18 +213,9 @@ def obtener_kit(modelo, numero_serie):
     return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
     
                
-# Configuración de la página
-st.set_page_config(
-    page_title="Buscador de Kits | Serfriair",
-    layout="centered"
-)
-
-# Mostrar logo de Serfriair
-# Asegúrate de tener el archivo serfriair_logo.png en la misma carpeta que app.py
-st.image("serfriair_logo.png", width=120)
-
-st.title("🔍 Buscador de Kits por Número de Serie")
-
+st.title("\U0001F50D Buscador de Kits por Número de Serie")
+modelo = st.text_input("Ingrese el modelo del secador:")
+numero_serie = st.text_input("Ingrese el número de serie:")
 
 if st.button("Buscar Kit"):
     if modelo and numero_serie:
