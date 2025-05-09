@@ -132,68 +132,80 @@ def obtener_kit(modelo, numero_serie):
     if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and anio_serie is not None:
         if (anio_serie > 18) or (anio_serie == 18 and semana_serie > 14) or \
            (anio_serie == 18 and semana_serie == 14 and valor_serie >= "MA09505"):
-            return "El kit correspondiente es: MKO45KIT"
+            return "El kit correspondiente es: MKO45KIT, PVP 156EUR."
         else:
-            return "El kit correspondiente es: MKO50KIT"
+            return "El kit correspondiente es: MKO50KIT, PVP 156EUR."
 
     # 📌 Regla para modelos con formato PXXXXX
     if valor_serie.startswith("P"):
-        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor_serie >= "P104774157":
-            return "El kit correspondiente es: MKON65KIT , PVP 168 EUR"
-        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and "P100070792" <= valor_serie <= "P104774156":
-            return "El kit correspondiente es: MKON55KIT"
-        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53", "MKE70"] and valor_serie >= "P104774157":
-            return "El kit correspondiente es: MKON65KIT"
         if modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"] and valor_serie >= "P100078377":
-            return "El kit correspondiente es: MKON405KIT"
-        if modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"] and valor_serie <= "P100078376":
-            return "El kit correspondiente es: MKO500KIT"
-        if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623" ] and valor_serie >= "P100077610":
-            return "El kit correspondiente es: MKON805KIT" 
+            return "El kit correspondiente es: MKON405KIT , PVP 447EUR."
+            
+        if modelo_normalizado in ["SDN35", "MKE70"] and valor_serie >= "P100070791":
+            return "El kit correspondiente es: MKO70KIT , PVP 187EUR."
+         if modelo_normalizado in ["SDN35", "MKE70"] and "P100070792" <= valor_serie <= "P104774156":
+            return "El kit correspondiente es: MKO75KIT , PVP 210EUR."
+        
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor_serie >= "P104774157":
+            return "El kit correspondiente es: MKON65KIT, PVP 168 EUR."
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and "P100070792" <= valor_serie <= "P104774156":
+            return "El kit correspondiente es: MKON55KIT, PVP 168 EUR"
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53", "MKE70"] and valor_serie >= "P104774157":
+            return "El kit correspondiente es: MKON65KIT, PVP 168EUR."
+       if modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"] and valor_serie <= "P100078376":
+            return "El kit correspondiente es: MKO500KIT, PVP 382EUR."
+
+       
+
+
         if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623" ] and valor_serie <= "P100077609":
-            return "El kit correspondiente es: MKO851KIT"
+            return "El kit correspondiente es: MKO851KIT , PVP 468EUR." 
+       
+        if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623" ] and valor_serie >= "P100077610":
+            return "El kit correspondiente es: MKON805KIT, PVP 533EUR" 
+       
         if modelo_normalizado in [ "SDN120", "MKE930", "SDN130", "MKE1200"] and valor_serie >= "P100077610":
-            return "El kit correspondiente es: MKON1205KIT"
+            return "El kit correspondiente es: MKON1205KIT, PVP 613EUR"
         if modelo_normalizado in ["SDN120", "MKE930", "SDN130", "MKE1200"] and valor_serie <= "P100077609":
-            return "El kit correspondiente es: MK1O210KIT"
+            return "El kit correspondiente es: MK1O210KIT, PVP 529EUR"
             
         if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623", "SDN120", "MKE930", "SDN130", "MKE1200"] and valor_serie <= "P100077609":
-            return "El kit correspondiente es: MKO851KIT"
+            return "El kit correspondiente es: MKO851KIT ,PVP 468EUR."
 
         if modelo_normalizado in ["SDN140", "MKE1388", "SDN150", "MKE1800"] and valor_serie >= "P100079932":
-            return "El kit correspondiente es: MKONHC1805 KIT" 
+            return "El kit correspondiente es: MKONHC1805 KIT , PVP 870EUR." 
         if modelo_normalizado in ["SDN140", "MKE1388", "SDN150", "MKE1800"] and valor_serie <= "P100079931":
-            return "El kit correspondiente es: MKO1820KIT"
+            return "El kit correspondiente es: MKO1820KIT , PVP 628EUR."
 
         if modelo_normalizado in [ "SDN160", "MKE2500", "SDN170", "MKE2775"] and valor_serie >= "P101076064":
-            return "El kit correspondiente es: MKONHC2775 KIT " 
+            return "El kit correspondiente es: MKONHC2775 KIT, PVP 1086,00EUR." 
         if modelo_normalizado in ["SDN160", "MKE2500", "SDN170", "MKE2775"] and valor_serie <= "P101076063":
-            return "El kit correspondiente es: MKO2700KIT"
+            return "El kit correspondiente es: MKO2700KIT , PVP 874EUR."
 
     
 # 📌Lógica específica para MKE-100 (SDN40)
     if modelo_normalizado in ["SDN40", "MKE100", "SDN50", "MKE150", "SDN60", "MKE190"]:
         if valor_serie >= "P000000000":
-            return "El kit correspondiente es: MKON155KIT"
+            return "El kit correspondiente es: MKON155KIT , PVP 262EUR."
      
     if modelo_normalizado in ["SDN40", "MKE100", "SDN50", "MKE150", "SDN60", "MKE190"] and anio_serie is not None:
         if (anio_serie > 20) or (anio_serie == 20 and semana_serie > 4) or \
            (anio_serie == 20 and semana_serie == 4 and valor_serie >= "MA06260"):
-            return "El kit correspondiente es: MKON155KIT"
+            return "El kit correspondiente es: MKON155KIT, PVP 262EUR."
         else:
-            return "El kit correspondiente es: MKO150KIT"
+            return "El kit correspondiente es: MKO150KIT , PVP 212EUR."
             
     # 📌Lógica específica para MKE-100 (SDN180)
     if modelo_normalizado in ["SDN180", "MKE3300", "SDN190", "MKE3915", "SDN200", "MKE5085" ,"SDN210", "MKE5850"]:
         if valor_serie >= "P000000000":
-            return "El kit correspondiente es: MKOHC5850KIT"
+            return "El kit correspondiente es: MKOHC5850KIT , PVP 1511,00EUR."
      
     if modelo_normalizado in ["SDN180", "MKE3300", "SDN190", "MKE3915", "SDN200", "MKE5085" ,"SDN210", "MKE5850"] and anio_serie is not None:
         if (anio_serie > 20) or (anio_serie == 20 and semana_serie > 2) or \
            (anio_serie == 20 and semana_serie == 2 and valor_serie >= "MA05589"):
-            return "El kit correspondiente es: MKOHC5850KIT"
+            return "El kit correspondiente es: MKOHC5850KIT , PVP 1511,00EUR."
         else:
-            return "El kit correspondiente es: 2 x MKO2700KIT"
+            return "El kit correspondiente es: 2 x MKO2700KIT , PVP 874,00EUR."
     
     
     # 📌 Recorre la base de datos integrada para buscar coincidencias
