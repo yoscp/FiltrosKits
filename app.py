@@ -217,6 +217,9 @@ st.title("\U0001F50D Buscador de Kits por Número de Serie")
 modelo = st.text_input("Ingrese el modelo del secador:")
 numero_serie = st.text_input("Ingrese el número de serie:")
 
+# Asegúrate de tener el archivo serfriair_logo.png en la misma carpeta que app.py
+st.image("serfriair_logo.png", width=120)
+
 if st.button("Buscar Kit"):
     if modelo and numero_serie:
         resultado = obtener_kit(modelo, numero_serie)
