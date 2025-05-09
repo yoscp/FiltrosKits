@@ -218,7 +218,7 @@ modelo = st.text_input("Ingrese el modelo del secador:")
 numero_serie = st.text_input("Ingrese el número de serie:")
 
 # Asegúrate de tener el archivo serfriair_logo.png en la misma carpeta que app.py
-st.image("serfriair_logo.png", width=120)
+st.image("serfriair_logo.png", width=220)
 
 if st.button("Buscar Kit"):
     if modelo and numero_serie:
