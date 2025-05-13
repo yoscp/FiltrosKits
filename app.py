@@ -150,7 +150,9 @@ def obtener_kit(modelo, numero_serie):
             return "El kit correspondiente es: MKON65KIT, PVP 168 EUR."
         if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and "P100070792" <= valor_serie <= "P104774156":
             return "El kit correspondiente es: MKON55KIT, PVP 168 EUR"
-        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and " 14-18-MA09505" <= valor_serie <= " P100070791":
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and " 14-18-MA09505" <= valor_serie ":
+            return "El kit correspondiente es: MKON45KIT, PVP 156 EUR"
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and " P000000000" <= valor_serie <= " P100070791":
             return "El kit correspondiente es: MKON45KIT, PVP 156 EUR"    
         if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53", "MKE70"] and valor_serie >= "P104774157":
             return "El kit correspondiente es: MKON65KIT, PVP 168EUR."
