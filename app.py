@@ -159,10 +159,10 @@ def obtener_kit(modelo, numero_serie):
     # 4) Finalmente el bloque “puros Pxxxxx”
     if valor.startswith("P"):
         # ejemplo para el siguiente nivel
-        if modelo_norm in ["SDN10",…] and valor <= "P100070791":
+        if modelo_norm in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor <= "P100070791":
             return "El kit correspondiente es: MKO45KIT, PVP 156 EUR"
         # resto de reglas P…
-        if modelo_norm in ["SDN10",…] and valor >= "P104774157":
+        if modelo_norm in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor >= "P104774157":
             return "El kit correspondiente es: MKON65KIT, PVP 168 EUR"
         # etc.
 
