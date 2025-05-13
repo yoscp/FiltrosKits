@@ -144,7 +144,7 @@ def obtener_kit(modelo, numero_serie):
 
     # 3) Recorremos data para capturar también rangos que crucen a Pxxxxx
     for m, kit, rango in data:
-        if modelo_norm != m or not rango:
+        if modelo_normalizado != m or not rango:
             continue
         h = re.search(r"hasta:\s*([P\d-]+)", rango)
         d = re.search(r"desde:\s*([P\d-]+)", rango)
@@ -158,10 +158,10 @@ def obtener_kit(modelo, numero_serie):
     # 4) Finalmente el bloque “puros Pxxxxx”
     if valor.startswith("P"):
         # ejemplo para el siguiente nivel
-        if modelo_norm in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor <= "P100070791":
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor <= "P100070791":
             return "El kit correspondiente es: MKO45KIT, PVP 156 EUR"
         # resto de reglas P…
-        if modelo_norm in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor >= "P104774157":
+        if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor >= "P104774157":
             return "El kit correspondiente es: MKON65KIT, PVP 168 EUR"
         # etc.
 
