@@ -126,7 +126,6 @@ def obtener_kit(modelo, numero_serie):
         
     modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
-
       
     # 📌 Regla General para números de serie en formato SS-AA-VALOR
     if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and anio_serie is not None:
@@ -137,7 +136,7 @@ def obtener_kit(modelo, numero_serie):
             return "El kit correspondiente es: MKO50KIT, PVP 156EUR."
 
     # 2) Regla SS-AA pura
-    if modelo_norm in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and anio is not None:
+    if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and anio_serie is not None:
         if (anio > 18) or (anio == 18 and (semana > 14 or (semana==14 and valor >= "MA09505"))):
             return "El kit correspondiente es: MKO45KIT, PVP 156 EUR"
         else:
