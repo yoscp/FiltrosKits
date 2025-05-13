@@ -136,6 +136,38 @@ def obtener_kit(modelo, numero_serie):
         else:
             return "El kit correspondiente es: MKO50KIT, PVP 156EUR."
 
+    # 2) Regla SS-AA pura
+    if modelo_norm in ["SDN10","MKE23",…] and anio is not None:
+        if (anio > 18) or (anio == 18 and (semana > 14 or (semana==14 and valor >= "MA09505"))):
+            return "El kit correspondiente es: MKO45KIT, PVP 156 EUR"
+        else:
+            return "El kit correspondiente es: MKO50KIT, PVP 156 EUR"
+
+    # 3) Recorremos data para capturar también rangos que crucen a Pxxxxx
+    for m, kit, rango in data:
+        if modelo_norm != m or not rango:
+            continue
+        h = re.search(r"hasta:\s*([P\d-]+)", rango)
+        d = re.search(r"desde:\s*([P\d-]+)", rango)
+        # si estamos antes del límite “hasta”
+        if h and numero_serie <= h.group(1):
+            return f"El kit correspondiente es: {kit}, PVP {kit_prices[kit]} EUR"
+        # si estamos después de “desde”
+        if d and numero_serie >= d.group(1):
+            return f"El kit correspondiente es: {kit}, PVP {kit_prices[kit]} EUR"
+
+    # 4) Finalmente el bloque “puros Pxxxxx”
+    if valor.startswith("P"):
+        # ejemplo para el siguiente nivel
+        if modelo_norm in ["SDN10",…] and valor <= "P100070791":
+            return "El kit correspondiente es: MKO45KIT, PVP 156 EUR"
+        # resto de reglas P…
+        if modelo_norm in ["SDN10",…] and valor >= "P104774157":
+            return "El kit correspondiente es: MKON65KIT, PVP 168 EUR"
+        # etc.
+
+    return "No se encontró un kit asociado…"
+    
     # 📌 Regla para modelos con formato PXXXXX
     if valor_serie.startswith("P"):
         if modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"] and valor_serie >= "P100078377":
@@ -158,8 +190,6 @@ def obtener_kit(modelo, numero_serie):
             return "El kit correspondiente es: MKON65KIT, PVP 168EUR."
         if modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"] and valor_serie <= "P100078376":
             return "El kit correspondiente es: MKO500KIT, PVP 382EUR."
-
-       
 
 
         if modelo_normalizado in ["SDN100", "MKE495", "SDN110", "MKE623" ] and valor_serie <= "P100077609":
