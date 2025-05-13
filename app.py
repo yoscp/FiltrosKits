@@ -5,10 +5,6 @@ import subprocess
 import time
 import webbrowser
 
-kit_prices = {
-    "MKO50KIT": 100,
-    "MKO45KIT": 156,
-    "MKON55KIT": 168,
 
 def extraer_valores_serie(serie):
     """Extrae los valores de la serie en formato SS-AA-VALOR o PXXXXXX."""
