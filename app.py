@@ -129,6 +129,11 @@ def obtener_kit(modelo, numero_serie):
 
       
     # 📌 Regla General para números de serie en formato SS-AA-VALOR
+
+    if modelo_normalizado in ["SDN10","MKE23","SDN20","MKE38","SDN30","MKE53"] \
+       and valor_serie.startswith("P") and valor_serie <= "P100070791":
+        return "El kit correspondiente es: MKO45KIT, PVP 156 EUR"
+           
     if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and anio_serie is not None:
         if (anio_serie > 18) or (anio_serie == 18 and semana_serie > 14) or \
            (anio_serie == 18 and semana_serie == 14 and valor_serie >= "MA09505"):
