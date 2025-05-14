@@ -43,7 +43,6 @@ equivalencias_modelo = {
 data = [
     ["SDN10", "MKO50KIT", "hasta: 14-18-MA09504"],
     ["SDN10", "MKO45KIT", "desde: 14-18-MA09505"],
-    ["SDN20", "MKO50KIT", ""],
     ["SDN20", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
     ["SDN20", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN20", "MKON65KIT", "desde: P104774157"],
