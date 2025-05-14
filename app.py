@@ -42,8 +42,8 @@ equivalencias_modelo = {
 # Base de datos integrada en el código
 data = [
     ["SDN10", "MKO50KIT", "hasta: 14-18-MA09504"],
-    ["SDN10", "MKO45KIT", "desde: 14-18-MA09505"],
-    ["SDN20", "MKO45KIT", "desde: 14-18-MA09505 hasta: P100070791"],
+    ["SDN10", "MKO45KIT ", "desde: 14-18-MA09505"],
+    ["SDN20", "MKO45KIT PVP 156EUR", "desde: 14-18-MA09505 hasta: P100070791"],
     ["SDN20", "MKON55KIT", "desde: P100070792 hasta: P104774156"],
     ["SDN20", "MKON65KIT", "desde: P104774157"],
     ["SDN30", "MKO50KIT", "desde: P10000000 hasta: P1134515181"],
