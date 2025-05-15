@@ -234,14 +234,10 @@ def obtener_kit(modelo, numero_serie):
     return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
     
 # Asegúrate de tener el archivo serfriair_logo.png en la misma carpeta que app.py
-st.markdown(
-    """
-    <div style="text-align: center;">
-        <img src="serfriair_logo.png" width="250">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.image("serfriair_logo.png", width=250)
          
 st.title("\U0001F50D Buscador de Kits por Número de Serie")
 modelo = st.text_input("Ingrese el modelo del secador:")
