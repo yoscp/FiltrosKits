@@ -235,7 +235,7 @@ def obtener_kit(modelo, numero_serie):
     
 # Asegúrate de tener el archivo serfriair_logo.png en la misma carpeta que app.py
 
-col1, col2, col3 = st.columns([1, 3, 1])
+col1, col2, col3 = st.columns([1, 1, 1])
 with col2:
     st.image("serfriair_logo1.png", width=200)
          
