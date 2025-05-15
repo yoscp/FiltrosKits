@@ -243,8 +243,16 @@ st.title("\U0001F50D Buscador de Kits por Número de Serie ")
 modelo = st.text_input("Ingrese el modelo del secador:")
 numero_serie = st.text_input("Ingrese el número de serie:")
 
-import streamlit as st
+st.markdown(
+    """
+    <div style="text-align: center; font-size: 18px; color: #4c4c4c;">
+        <strong>Soluciones técnicas con precisión</strong>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
+import streamlit as st
 
 
 if st.button("Buscar Kit"):
