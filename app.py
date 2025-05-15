@@ -237,7 +237,7 @@ def obtener_kit(modelo, numero_serie):
 
 col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
-    st.image("serfriair_logo.png", width=200)
+    st.image("serfriair_logo1.png", width=200)
          
 st.title("\U0001F50D Buscador de Kits por Número de Serie")
 modelo = st.text_input("Ingrese el modelo del secador:")
