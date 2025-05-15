@@ -245,15 +245,6 @@ numero_serie = st.text_input("Ingrese el número de serie:")
 
 import streamlit as st
 
-# Título personalizado con color rojo, centrado y emojis
-st.markdown(
-    """
-    <h2 style='text-align: center; color: red;'>
-        📏 Centrado con regla para Albert 😂
-    </h2>
-    """,
-    unsafe_allow_html=True
-)
 
 
 if st.button("Buscar Kit"):
