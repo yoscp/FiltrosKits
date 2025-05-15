@@ -239,7 +239,7 @@ col1, col2, col3 = st.columns([1, 1, 1])
 with col2:
     st.image("serfriair_logo1.png", width=200)
          
-st.title("\U0001F50D Buscador de Kits por Número de Serie")
+st.title("\U0001F50D Buscador de Kits por Número de Serie ")
 modelo = st.text_input("Ingrese el modelo del secador:")
 numero_serie = st.text_input("Ingrese el número de serie:")
 
@@ -250,4 +250,4 @@ if st.button("Buscar Kit"):
         resultado = obtener_kit(modelo, numero_serie)
         st.success(resultado)
     else:
-        st.warning("Por favor, ingrese un modelo y un número de serie.")
+        st.warning("Por favor, ingrese un modelo y un número de serie.    Si usted es Albert puede medir con una regla")
