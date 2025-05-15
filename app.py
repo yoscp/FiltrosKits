@@ -246,7 +246,7 @@ numero_serie = st.text_input("Ingrese el número de serie:")
 st.markdown(
     """
     <div style="text-align: center; font-size: 18px; color: #4c4c4c;">
-        <strong>Soluciones técnicas con precisión</strong>
+        <strong>Encuentra el kit exacto, sin complicaciones.</strong>
     </div>
     """,
     unsafe_allow_html=True
