@@ -141,7 +141,7 @@ def obtener_kit(modelo, numero_serie):
         if valor_serie.startswith("P") and modelo_normalizado in ["SDN35", "MKE70"]:
     # 1️⃣ Primero el rango más alto
         if valor_serie >= "P104774157":
-        return "El kit correspondiente es: MKO65KIT, PVP 168EUR."
+            return "El kit correspondiente es: MKO65KIT, PVP 168EUR."
     # 2️⃣ Luego el rango intermedio
         elif "P100070792" <= valor_serie <= "P104774156":
             return "El kit correspondiente es: MKO75KIT, PVP 210EUR."
