@@ -222,9 +222,9 @@ def obtener_kit(modelo, numero_serie):
             return "El kit correspondiente es: 2 x MKO2700KIT , PVP 874,00EUR."
     
     
-    # 📌 Recorre la base de datos integrada para buscar coincidencias
-    for row in data:
-    if modelo_normalizado == row[0]:
+# 📌 Recorre la base de datos integrada para buscar coincidencias
+for row in data:
+if modelo_normalizado == row[0]:
             kit, rango_serie = row[1], row[2]
         if not rango_serie:
         return f"El kit correspondiente es: {kit}"
