@@ -105,9 +105,12 @@ data = [
 def validar_datos(modelo, numero_serie):
     """Verifica si el modelo y el número de serie son correctos."""
     
-    # 📌 Verificar si el modelo existe en la base de equivalencias
-    if modelo not in equivalencias_modelo:
-        return "Número de modelo incorrecto"
+    # Limpieza del modelo y número de serie
+modelo_input = modelo.upper().replace(" ", "").replace("-", "")
+numero_serie = numero_serie.upper().replace(" ", "").replace("–", "-").replace("—", "-")
+
+if modelo_input not in equivalencias_modelo:
+    return "Número de modelo incorrecto"
         
     # 📌 Expresión regular mejorada para validar formatos
     formato_ssaa = re.fullmatch(r"\d{2}-\d{2}-MA\d{5}$", numero_serie)  # Exactamente SS-AA-MA##### (5 dígitos después de MA)
@@ -124,7 +127,9 @@ def obtener_kit(modelo, numero_serie):
     if error_validacion:
         return error_validacion
         
-    modelo_normalizado = equivalencias_modelo.get(modelo, modelo)
+    modelo_input = modelo.upper().replace(" ", "").replace("-", "")
+    numero_serie = numero_serie.upper().replace(" ", "").replace("–", "-").replace("—", "-")
+    modelo_normalizado = equivalencias_modelo.get(modelo_input, modelo_input)
     anio_serie, semana_serie, valor_serie = extraer_valores_serie(numero_serie)
 
       
@@ -225,12 +230,16 @@ def obtener_kit(modelo, numero_serie):
                 return f"El kit correspondiente es: {kit}"
             match_hasta = re.search(r"hasta:\s*([P\d-]+)", rango_serie)
             match_desde = re.search(r"desde:\s*([P\d-]+)", rango_serie)
-            if match_hasta and numero_serie <= match_hasta.group(1):
-                return f"El kit correspondiente es: {kit}"
-            if match_desde and numero_serie >= match_desde.group(1):
-                return f"El kit correspondiente es: {kit}"
-             
 
+           if match_hasta:
+           valor_hasta = match_hasta.group(1).upper().replace(" ", "").replace("–", "-").replace("—", "-")
+              if numero_serie <= valor_hasta:
+              return f"El kit correspondiente es: {kit}"
+
+          if match_desde:
+          valor_desde = match_desde.group(1).upper().replace(" ", "").replace("–", "-").replace("—", "-")
+             if numero_serie >= valor_desde:
+             return f"El kit correspondiente es: {kit}"
     return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
     
 # Asegúrate de tener el archivo serfriair_logo.png en la misma carpeta que app.py
