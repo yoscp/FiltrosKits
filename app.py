@@ -145,7 +145,7 @@ def obtener_kit(modelo, numero_serie):
                 return "El kit correspondiente es: MKO75KIT, PVP 210EUR."
             else:
                 return "El kit correspondiente es: MKO70KIT, PVP 187EUR."
-           if modelo_norm in ["SDN35","MKE70"] and anio is not None:
+        if modelo_norm in ["SDN35","MKE70"] and anio is not None:
                 return "El kit correspondiente es: MKO70KIT, PVP 187EUR."
         if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor_serie >= "P104774157":
             return "El kit correspondiente es: MKON65KIT, PVP 168 EUR."
