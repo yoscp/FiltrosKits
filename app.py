@@ -209,7 +209,10 @@ def obtener_kit(modelo, numero_serie):
     return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
 
 # Asegúrate de tener el archivo serfriair_logo.png en la misma carpeta que app.py
-st.image("serfriair_logo.png", width=150)
+# === Interfaz de Streamlit ===
+col1, col2, col3 = st.columns([1, 1, 1])
+with col2:
+    st.image("serfriair_logo1.png", width=200)
 st.title("🔍 Buscador de Kits por Número de Serie")
 modelo = st.text_input("Ingrese el modelo del secador:")
 numero_serie = st.text_input("Ingrese el número de serie:")
