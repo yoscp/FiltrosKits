@@ -220,3 +220,16 @@ if st.button("Buscar Kit"):
         st.success(resultado)
     else:
         st.warning("Por favor, ingrese un modelo y un número de serie.")
+st.markdown("""
+<div style="text-align: center; font-size: 18px; color: #4c4c4c;">
+    <strong>Encuentra el kit exacto, sin complicaciones.</strong>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div style='text-align: center; margin-top: 20px;'>
+    <a href='https://www.serfriair.es' target='_blank' style='text-decoration: none; font-weight: bold; font-size: 16px; color: #1f77b4;'>
+        🌐 Visita nuestra web para ver más productos
+    </a>
+</div>
+""", unsafe_allow_html=True)
