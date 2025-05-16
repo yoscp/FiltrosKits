@@ -136,20 +136,14 @@ def obtener_kit(modelo, numero_serie):
     if valor_serie.startswith("P"):
         if modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"] and valor_serie >= "P100078377":
             return "El kit correspondiente es: MKON405KIT, PVP 447EUR."
-        if modelo_normalizado in ["SDN35", "MKE70"] and valor_serie >= "P100070791":
-            return "El kit correspondiente es: MKO75KIT, PVP 210EUR."
-        if valor_serie.startswith("P") and modelo_normalizado in ["SDN35", "MKE70"]:
-    if valor_serie.startswith("P") and modelo_normalizado in ["SDN35", "MKE70"]:
-    # 1️⃣ Primero el rango más alto
-    if valor_serie >= "P104774157":
-        return "El kit correspondiente es: MKO65KIT, PVP 168EUR."
-    # 2️⃣ Luego el rango intermedio
-    elif "P100070792" <= valor_serie <= "P104774156":
-        return "El kit correspondiente es: MKO75KIT, PVP 210EUR."
-    # 3️⃣ Por último el rango más bajo
-    else:  # valor_serie <= "P100070791"
-        return "El kit correspondiente es: MKO70KIT, PVP 187EUR."
-        
+# Casos SDN35 / MKE70 reordenados y usando elif
+        if modelo_normalizado in ["SDN35", "MKE70"]:
+            if valor_serie >= "P104774157":
+                return "El kit correspondiente es: MKO65KIT, PVP 168EUR."
+            elif "P100070792" <= valor_serie <= "P104774156":
+                return "El kit correspondiente es: MKO75KIT, PVP 210EUR."
+            else:
+                return "El kit correspondiente es: MKO70KIT, PVP 187EUR."
         if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor_serie >= "P104774157":
             return "El kit correspondiente es: MKON65KIT, PVP 168 EUR."
         if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and "P100070792" <= valor_serie <= "P104774156":
