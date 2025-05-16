@@ -243,7 +243,17 @@ st.title("\U0001F50D Buscador de Kits por Número de Serie ")
 modelo = st.text_input("Ingrese el modelo del secador:")
 numero_serie = st.text_input("Ingrese el número de serie:")
 
-st.markdown(
+
+import streamlit as st
+
+
+if st.button("Buscar Kit"):
+    if modelo and numero_serie:
+        resultado = obtener_kit(modelo, numero_serie)
+        st.success(resultado)
+    else:
+        st.warning("Por favor, ingrese un modelo y un número de serie.    Si usted es Albert puede medir con una regla")
+        st.markdown(
     """
     <div style="text-align: center; font-size: 18px; color: #4c4c4c;">
         <strong>Encuentra el kit exacto, sin complicaciones.</strong>
@@ -261,12 +271,3 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-import streamlit as st
-
-
-if st.button("Buscar Kit"):
-    if modelo and numero_serie:
-        resultado = obtener_kit(modelo, numero_serie)
-        st.success(resultado)
-    else:
-        st.warning("Por favor, ingrese un modelo y un número de serie.    Si usted es Albert puede medir con una regla")
