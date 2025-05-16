@@ -133,19 +133,19 @@ def obtener_kit(modelo, numero_serie):
         else:
             return "El kit correspondiente es: MKO50KIT, PVP 156EUR."
     
-   if re.fullmatch(r"\d{2}-\d{2}-[A-Z\d]+$", numero_serie):
-    if modelo_normalizado in ["SDN35", "MKE70"]:
-        return "El kit correspondiente es: MKO70KIT, PVP 187EUR."
-    elif modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"]:
-        return "El kit correspondiente es: MKO500KIT, PVP 382EUR."
-    elif modelo_normalizado in ["SDN100", "MKE495"]:
-        return "El kit correspondiente es: MKO851KIT, PVP 468EUR."
-    elif modelo_normalizado in ["SDN110", "MKE623", "SDN120", "MKE930", "SDN130", "MKE1200"]:
-        return "El kit correspondiente es: MK1210KIT, PVP 529EUR."
-    elif modelo_normalizado in ["SDN140", "MKE1388", "SDN150", "MKE1800"]:
-        return "El kit correspondiente es: MKO1820KIT, PVP 628EUR."
-    elif modelo_normalizado in ["SDN160", "MKE2500", "SDN170", "MKE2775"]:
-        return "El kit correspondiente es: 2 x MKO2700KIT, PVP 874,00EUR."
+    if re.fullmatch(r"\d{2}-\d{2}-[A-Z\d]+$", numero_serie):
+        if modelo_normalizado in ["SDN35", "MKE70"]:
+            return "El kit correspondiente es: MKO70KIT, PVP 187EUR."
+        elif modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"]:
+            return "El kit correspondiente es: MKO500KIT, PVP 382EUR."
+        elif modelo_normalizado in ["SDN100", "MKE495"]:
+            return "El kit correspondiente es: MKO851KIT, PVP 468EUR."
+        elif modelo_normalizado in ["SDN110", "MKE623", "SDN120", "MKE930", "SDN130", "MKE1200"]:
+            return "El kit correspondiente es: MK1210KIT, PVP 529EUR."
+        elif modelo_normalizado in ["SDN140", "MKE1388", "SDN150", "MKE1800"]:
+            return "El kit correspondiente es: MKO1820KIT, PVP 628EUR."
+        elif modelo_normalizado in ["SDN160", "MKE2500", "SDN170", "MKE2775"]:
+            return "El kit correspondiente es: 2 x MKO2700KIT, PVP 874,00EUR."
 
     # 📌 Regla para modelos con formato PXXXXX
     if valor_serie.startswith("P"):
