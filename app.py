@@ -252,8 +252,9 @@ if st.button("Buscar Kit"):
         resultado = obtener_kit(modelo, numero_serie)
         st.success(resultado)
     else:
-        st.warning("Por favor, ingrese un modelo y un número de serie.    Si usted es Albert puede medir con una regla")
-        st.markdown(
+        st.warning("Por favor, ingrese un modelo y un número de serie.")
+
+st.markdown(
     """
     <div style="text-align: center; font-size: 18px; color: #4c4c4c;">
         <strong>Encuentra el kit exacto, sin complicaciones.</strong>
