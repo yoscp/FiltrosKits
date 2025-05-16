@@ -224,22 +224,22 @@ def obtener_kit(modelo, numero_serie):
     
     # 📌 Recorre la base de datos integrada para buscar coincidencias
     for row in data:
-        if modelo_normalizado == row[0]:
+    if modelo_normalizado == row[0]:
             kit, rango_serie = row[1], row[2]
-            if not rango_serie:
-                return f"El kit correspondiente es: {kit}"
-            match_hasta = re.search(r"hasta:\s*([P\d-]+)", rango_serie)
-            match_desde = re.search(r"desde:\s*([P\d-]+)", rango_serie)
+        if not rango_serie:
+        return f"El kit correspondiente es: {kit}"
+        match_hasta = re.search(r"hasta:\s*([P\d-]+)", rango_serie)
+        match_desde = re.search(r"desde:\s*([P\d-]+)", rango_serie)
 
-           if match_hasta:
+    if match_hasta:
            valor_hasta = match_hasta.group(1).upper().replace(" ", "").replace("–", "-").replace("—", "-")
-              if numero_serie <= valor_hasta:
-              return f"El kit correspondiente es: {kit}"
+        if numero_serie <= valor_hasta:
+        return f"El kit correspondiente es: {kit}"
 
-          if match_desde:
-          valor_desde = match_desde.group(1).upper().replace(" ", "").replace("–", "-").replace("—", "-")
-             if numero_serie >= valor_desde:
-             return f"El kit correspondiente es: {kit}"
+    if match_desde:
+    valor_desde = match_desde.group(1).upper().replace(" ", "").replace("–", "-").replace("—", "-")
+        if numero_serie >= valor_desde:
+        return f"El kit correspondiente es: {kit}"
     return "No se encontró un kit asociado. Por favor, revise el modelo y el número de serie."
     
 # Asegúrate de tener el archivo serfriair_logo.png en la misma carpeta que app.py
