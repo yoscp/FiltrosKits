@@ -135,10 +135,10 @@ def obtener_kit(modelo, numero_serie):
     
     if modelo_normalizado in ["SDN35", "MKE70"]:
     # Si la serie está en formato SS-AA-VALOR (mes-año-número)
-    if re.fullmatch(r"\d{2}-\d{2}-[A-Z\d]+$", numero_serie):
+       if re.fullmatch(r"\d{2}-\d{2}-[A-Z\d]+$", numero_serie):
         return "El kit correspondiente es: MKO70KIT, PVP 187EUR."
     # A partir de aquí, las comprobaciones con valores ‘P’
-    if valor_serie >= "P104774157":
+       if valor_serie >= "P104774157":
         return "El kit correspondiente es: MKO65KIT, PVP 168EUR."
     elif "P100070792" <= valor_serie <= "P104774156":
         return "El kit correspondiente es: MKO75KIT, PVP 210EUR."
