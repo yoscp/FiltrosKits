@@ -149,6 +149,14 @@ def obtener_kit(modelo, numero_serie):
 
     # 📌 Regla para modelos con formato PXXXXX
     if valor_serie.startswith("P"):
+
+        if modelo_normalizado in ["SDN35", "MKE70"] and valor_serie >= "P104774157":
+            return "El kit correspondiente es: MKON65KIT, PVP 168EUR."
+        if modelo_normalizado in ["SDN35", "MKE70"] and valor_serie <= "P100070791":
+            return "El kit correspondiente es: MKON70KIT, PVP 187EUR."
+        if modelo_normalizado in ["SDN35", "MKE70"] and "P100070792" <= valor_serie <= "P104774156":
+            return "El kit correspondiente es: MKON75KIT, PVP 187EUR."
+            
         if modelo_normalizado in ["SDN70", "MKE210", "SDN80", "MKE305", "SDN90", "MKE375"] and valor_serie >= "P100078377":
             return "El kit correspondiente es: MKON405KIT, PVP 447EUR."
         if modelo_normalizado in ["SDN10", "MKE23", "SDN20", "MKE38", "SDN30", "MKE53"] and valor_serie >= "P104774157":
@@ -197,6 +205,8 @@ def obtener_kit(modelo, numero_serie):
             return "El kit correspondiente es: MKOHC5850KIT, PVP 1511,00EUR."
         else:
             return "El kit correspondiente es: 2 x MKO2700KIT, PVP 874,00EUR."
+
+    
     # 📌 Recorre la base de datos integrada para buscar coincidencias
     for row in data:
         if modelo_normalizado == row[0]:
