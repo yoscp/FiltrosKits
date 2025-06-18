@@ -141,7 +141,7 @@ def obtener_kit(modelo, numero_serie):
         elif modelo_normalizado in ["SDN100", "MKE495"]:
             return "El kit correspondiente es: MKO851KIT, PVP 468EUR."
         elif modelo_normalizado in ["SDN110", "MKE623", "SDN120", "MKE930", "SDN130", "MKE1200"]:
-            return "El kit correspondiente es: MK1210KIT, PVP 529EUR."
+            return "El kit correspondiente es: MKO1210KIT, PVP 529EUR."
         elif modelo_normalizado in ["SDN140", "MKE1388", "SDN150", "MKE1800"]:
             return "El kit correspondiente es: MKO1820KIT, PVP 628EUR."
         elif modelo_normalizado in ["SDN160", "MKE2500", "SDN170", "MKE2775"]:
